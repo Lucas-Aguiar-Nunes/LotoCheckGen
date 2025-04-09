@@ -62,3 +62,17 @@ footer p {
     line-height: 1;
     font-size: 25px;
 }
+
+.button{
+    background-color: #B546C3;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover{
+    background-color: #bb8cc1;
+}
