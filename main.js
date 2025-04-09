@@ -21,7 +21,6 @@ async function latest_loto() {
 // Função para Verificar se Jogo já Saiu em Algum Concurso
 async function check_loto(jogo) {
     let response = await fetch("https://loteriascaixa-api.herokuapp.com/api/lotofacil");                    // Conectar com Loterias API REST
-    //let jogo = ['02', '03', '05', '06', '09', '10', '11', '13', '14', '16', '18', '20', '23', '24', '25'];  // Jogo Informado pelo Usuário
     if (response.ok){
         let resultado = await response.json();
         for (let index = 0; index < resultado.length; index++){                 // Verificar cada Jogo de Todos os Concursos já Realizados
@@ -69,3 +68,20 @@ function compara_jogos(usuario, loterica){
     }
     return contador;
 }
+
+let jogo = [];
+let botoes = document.querySelectorAll(".numeros"); // Seleciona Todos os Elementos da Classe Numeros
+// Loop para cada Botão executar função passada
+botoes.forEach(botao => {
+  botao.addEventListener("click", function () {
+    let numero = this.textContent; // Pega o texto dentro do botão
+    if (jogo.length < 15){
+        jogo.push(numero);
+        this.classList.add("clicado");
+        this.disabled = true;          // Desativa o Botão
+    }
+    else{
+        alert("15 Numeros já adicionados!");
+    }
+  });
+});

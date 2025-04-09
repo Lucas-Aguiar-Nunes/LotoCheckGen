@@ -1,0 +1,43 @@
+body{
+    font-family: 'Abel';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 100px;
+    line-height: 127px;
+    color: #000000;
+    background: rgba(253, 255, 147, 1)
+}
+
+.bilhete{
+    display: flex;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center; 
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.numeros{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(181, 70, 195, 0.5) 50%, #B546C3 100%);
+    font-family: 'Abel';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    color: #000000;
+    cursor: pointer;
+}
+
+.numeros.clicado {
+    background-color: gray;
+    cursor: not-allowed;
+}
