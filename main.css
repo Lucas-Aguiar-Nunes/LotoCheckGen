@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body{
     font-family: 'Abel';
     font-style: normal;
@@ -40,4 +46,19 @@ body{
 .numeros.clicado {
     background-color: gray;
     cursor: not-allowed;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 10px;
+}
+
+footer p {
+    margin: 0;
+    line-height: 1;
+    font-size: 25px;
 }
