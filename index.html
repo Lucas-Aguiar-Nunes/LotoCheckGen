@@ -9,8 +9,10 @@
     <script src='main.js' defer></script>
 </head>
 <body>
-    <input class="button" type="button" value="Latest" onclick="latest_loto()">
-    <input class="button" type="button" value="Verifica" onclick="gen_loto()">
+    <input id="Latest" class="button" type="button" value="Latest" onclick="latest_loto(id)">
+    <input id="Verifica" class="button" type="button" value="Verifica" onclick="check_loto(id)">
+    <input id="concursos" class="button" type="button" value="Concurso" onclick="check_loto(id)">
+    <input id="input" class="input" type="text">
     <div class="bilhete">
         <button id="01" class="numeros" type="button">01</button>
         <button id="02" class="numeros" type="button">02</button>

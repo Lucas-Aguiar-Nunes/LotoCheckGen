@@ -1,41 +1,57 @@
-// Função para Verificar se Acertou último Concurso
-async function latest_loto() {
-    let jogo = ['01', '02', '03', '04', '06', '10', '11', '13', '14', '15', '16', '21', '22', '23', '24'];  // Jogo Informado pelo Usuário
-    let response = await fetch("https://loteriascaixa-api.herokuapp.com/api/lotofacil/latest");             // Conectar com Loterias API REST
+// Função Conecta com Loterias Caixa API
+async function request(id) {
+    let url = "https://loteriascaixa-api.herokuapp.com/api/lotofacil"   // Endpoint para Todos os Conc Concurso
+
+    if (id == "Latest"){
+        url = url +"/latest";                                           // Endpoint para Último Concurso
+    }
+    else if (id == "concursos"){
+        let concurso = document.getElementById("input").value;
+        url = url + "/" + concurso;                                     // Endpoint para Concurso Informado pelo Usuário
+    }
+
+    let response = await fetch(url);
 
     if (response.ok){
         let resultado = await response.json();  // Se Conexão for OK, Converte JSON para Objeto JavaScript
-        let verificacao = compara_jogos(jogo, resultado.dezenas);
-        if (verificacao == 15){
-            console.log("Ganhou!");
-        }
-        else{
-            console.log("Perdeu\n Acertou "+verificacao+" Numeros!");
-        }
+        return resultado;                       // Retorna Objeto
     }
     else{
-        console.log("Erro");        //Erro na Requisição HTTP
+        console.log("erro");                    //Erro na Requisição HTTP
+    }
+}
+
+
+// Função para Verificar se Acertou último Concurso
+async function latest_loto(id) {
+    let jogo = ['02', '06', '07', '10', '11', '12', '13', '15', '18', '20', '21', '22', '23', '24', '25'];  // Jogo Informado pelo Usuário
+    let ultimo_concurso = await request(id);
+
+    let verificacao = compara_jogos(jogo, ultimo_concurso.dezenas);
+
+    if (verificacao == 15){
+        console.log("Ganhou!");
+    }
+    else{
+        console.log("Perdeu\n Acertou "+verificacao+" Numeros!");
     }
 }
 
 // Função para Verificar se Jogo já Saiu em Algum Concurso
-async function check_loto(jogo) {
-    let response = await fetch("https://loteriascaixa-api.herokuapp.com/api/lotofacil");                    // Conectar com Loterias API REST
-    if (response.ok){
-        let resultado = await response.json();
-        for (let index = 0; index < resultado.length; index++){                 // Verificar cada Jogo de Todos os Concursos já Realizados
-            let verificacao = compara_jogos(jogo, resultado[index].dezenas);
-            if (verificacao == 15){
-                console.log("Já Saiu");
-                console.log(resultado[index].concurso);
-                return;
-            }
+async function check_loto(id) {
+    let historico = await request(id);
+    let jogo = ['02', '06', '07', '10', '11', '12', '13', '14', '18', '20', '21', '22', '23', '24', '25'];
+    // if para gerar jogo aqui?
+
+    for (let index = 0; index < historico.length; index++){                 // Verificar cada Jogo de Todos os Concursos já Realizados
+        let verificacao = compara_jogos(jogo, historico[index].dezenas);
+        if (verificacao == 15){
+            console.log("Já Saiu");
+            console.log("Concurso: "+historico[index].concurso);
+            return;
         }
+    }
         console.log("Nunca Saiu");
-    }
-    else{
-        console.log("Erro");    //Erro na Requisição HTTP
-    }
 }
 
 // Função para Gerar Jogo Aleatório que ainda não saiu
