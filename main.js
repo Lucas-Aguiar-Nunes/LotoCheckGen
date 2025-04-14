@@ -1,6 +1,6 @@
 // Função Conecta com Loterias Caixa API
 async function request(id) {
-    let url = "https://loteriascaixa-api.herokuapp.com/api/lotofacil"   // Endpoint para Todos os Conc Concurso
+    let url = "https://loteriascaixa-api.herokuapp.com/api/lotofacil"   // Endpoint para Todos os Concurso
 
     if (id == "Latest"){
         url = url +"/latest";                                           // Endpoint para Último Concurso
@@ -10,14 +10,17 @@ async function request(id) {
         url = url + "/" + concurso;                                     // Endpoint para Concurso Informado pelo Usuário
     }
 
-    let response = await fetch(url);
-
-    if (response.ok){
+    try{
+        let response = await fetch(url);
+        if (!response.ok){
+            throw new Error("Erro!\nStatus "+response.status+" - "+response.statusText);
+        }   
         let resultado = await response.json();  // Se Conexão for OK, Converte JSON para Objeto JavaScript
         return resultado;                       // Retorna Objeto
     }
-    else{
-        console.log("erro");                    //Erro na Requisição HTTP
+    catch (error){
+        console.log(error)                   //Erro na Requisição HTTP
+        return
     }
 }
 
