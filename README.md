@@ -13,15 +13,6 @@
 
 <br>
 
-<p align="center">
-    <a href="#sobre">Sobre</a> • 
-    <a href="#pre-requisitos">Pré-Requisitos</a> • 
-    <a href="#back&frontend">Utilização</a> • 
-    <a href="#colaboradores">Colaboradores</a> •
-    <a href="#contribuição">Contribuição</a> •
-    <a href="#lincença">Licença</a>
-</p>
-
 <h1 align="center"; style="font-weight: bold;">LotoChekGen <img src="icone.ico" alt="Icone" width="30px"></h1>
 
 <p align="center">
