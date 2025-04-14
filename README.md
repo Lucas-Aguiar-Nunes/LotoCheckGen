@@ -1,4 +1,4 @@
-<h1 align="center"><img src="Logo.png" alt="Logo" width="200px"></h1>
+<h1 align="center"><img src="Imagens/Logo.pngLogo.png" alt="Logo" width="200px"></h1>
 
 <img src="https://img.shields.io/badge/Status-Em_Desenvolvimento-orange" alt="Status = Em Desenvolvimento">
 <img src="https://img.shields.io/badge/Documentação-Em_Andamento-yellow" alt="Documentação: Em Andamento">
@@ -13,7 +13,7 @@
 
 <br>
 
-<h1 align="center"; style="font-weight: bold;">LotoChekGen <img src="icone.ico" alt="Icone" width="30px"></h1>
+<h1 align="center"; style="font-weight: bold;">LotoChekGen <img src="Imagens/icone.ico" alt="Icone" width="30px"></h1>
 
 <p align="center">
     <a href="#sobre">Sobre</a> • 
