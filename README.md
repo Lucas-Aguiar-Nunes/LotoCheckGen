@@ -1,9 +1,11 @@
 <h1 align="center"><img src="Imagens/Logo.pngLogo.png" alt="Logo" width="200px"></h1>
 
-<img src="https://img.shields.io/badge/Status-Em_Desenvolvimento-orange" alt="Status = Em Desenvolvimento">
-<img src="https://img.shields.io/badge/Documentação-Em_Andamento-yellow" alt="Documentação: Em Andamento">
-<img src="https://img.shields.io/badge/Website-Down-red" alt="Website Down">
-<img src="https://img.shields.io/badge/License-MIT-blue" alt="License = MIT">
+<p>
+    <img src="https://img.shields.io/badge/Status-Em_Desenvolvimento-orange" alt="Status = Em Desenvolvimento">
+    <img src="https://img.shields.io/badge/Documentação-Em_Andamento-yellow" alt="Documentação: Em Andamento">
+    <img src="https://img.shields.io/badge/Website-Down-red" alt="Website Down">
+    <img src="https://img.shields.io/badge/License-MIT-blue" alt="License = MIT">
+</p>
 
 <br>
 
