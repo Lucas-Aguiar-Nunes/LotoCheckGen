@@ -102,8 +102,36 @@ function limpar_selecao(){
     jogo.splice(0, jogo.length);
 }
 
+async function numeros_mais_e_menos_saem() {
+    let historico = await request("verifica");
+    let numeros = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    for (let i = 0; i < historico.length; i++){                     // Iterar sobre histórico dos jogos
+        for (let j = 0; j < numeros.length; j++){                   // Iterar sobre as dezenas sorteadas
+            let indice = parseInt(historico[i].dezenas[j] - 1);     // Transforma a dezena em Index do Array
+            if (!isNaN(indice)){                                    // Se é Numerico
+                numeros[indice] ++;
+            }
+        }
+    }
+    let dezenas_ordem = numeros.slice();
+    dezenas_ordem.sort(function(a, b){return a - b});
+    console.log(numeros);
+    console.log(dezenas_ordem);
+    for (let indice = 0; indice < 5; indice++){
+        let dezena_menos_sorteada = numeros.indexOf(dezenas_ordem[indice]);
+        dezena_menos_sorteada ++;
+        console.log(dezena_menos_sorteada);
+    }
+    for (let indice = 24; indice > 19; indice--){
+        let dezena_mais_sorteada = numeros.indexOf(dezenas_ordem[indice]);
+        dezena_mais_sorteada ++;
+        console.log(dezena_mais_sorteada);
+    }
+}
+
 let jogo = [];
 let botoes = document.querySelectorAll(".numeros"); // Seleciona Todos os Elementos da Classe Numeros
+numeros_mais_e_menos_saem();
 // Loop para cada Botão executar função passada
 botoes.forEach(botao => {
   botao.addEventListener("click", function () {
