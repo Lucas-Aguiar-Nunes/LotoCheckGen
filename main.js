@@ -29,7 +29,8 @@ async function request(id) {
 // Função para Verificar se Acertou último Concurso
 async function check_loto(id) {
     if (jogo.length < 15){
-        console.log("Numeros Insuficentes!");
+        document.getElementById("popup").innerText = "Numeros Insuficentes!";
+        pop_up();
         return;
     }
     
@@ -37,21 +38,25 @@ async function check_loto(id) {
     let verificacao = compara_jogos(jogo, concurso.dezenas);
 
     if (verificacao == 15){
-        console.log("Ganhou!");
+        document.getElementById("popup").innerText = "Ganhou!";
     }
     else{
-        console.log("Perdeu\n Acertou "+verificacao+" Numeros!");
+        document.getElementById("popup").innerText = "Perdeu\n Acertou "+verificacao+" Numeros!";
     }
+    pop_up();
 }
+
 
 // Função para Verificar se Jogo já Saiu em Algum Concurso
 async function historico_loto(id) {
     if (jogo.length < 15){
-        console.log("Numeros Insuficentes!");
+        document.getElementById("popup").innerText = "Numeros Insuficentes!";
+        pop_up();
         return;
     }
     else if (jogo.length > 15){
-        console.log("Jogo com mais de 15 Numeros!");
+        document.getElementById("popup").innerText = "Jogo com mais de 15 Numeros!";
+        pop_up();
         return;
     }
     let historico = await request(id);
@@ -59,19 +64,22 @@ async function historico_loto(id) {
     for (let index = 0; index < historico.length; index++){                 // Verificar cada Jogo de Todos os Concursos já Realizados
         let verificacao = compara_jogos(jogo, historico[index].dezenas);
         if (verificacao == 15){
-            console.log("Já Saiu");
-            console.log("Concurso: "+historico[index].concurso);
+            document.getElementById("popup").innerText = "Já Saiu\n Concurso: "+historico[index].concurso;
+            pop_up();
             return;
         }
     }
-        console.log("Nunca Saiu");
+    document.getElementById("popup").innerText = "Nunca Saiu";
+    pop_up();
 }
+
 
 // Função para Gerar Jogo Aleatório que ainda não saiu
 async function gen_loto(){
     let lotofacil = ['01','02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25'];
     if (jogo.length > 15){
-        console.log("Jogo com mais de 15 Numeros!");
+        document.getElementById("popup").innerText = "Jogo com mais de 15 Numeros!";
+        pop_up();
         return;
     }
 
@@ -82,16 +90,16 @@ async function gen_loto(){
     while (jogo.length < 15) {
         let indice = Math.trunc(Math.random() * lotofacil.length);  // Gera um número inteiro aleatório para indice Array
         // Gera entre 0 e 1, multiplica pelo tamanho do array lotofacil e desconsidera parte decimal
-        let sorteado = lotofacil.splice(indice, 1)[0]; // splice - Remover do Array (para não repetir)
-        // E adiciona em sorteado (como array - indice 0)
+        let removido = lotofacil.splice(indice, 1); // splice - Remover do Array e guardar num array (para não repetir)
+        let sorteado = removido[0];                    // E armazena em sorteado
         document.getElementById(sorteado).style.background = 'radial-gradient(50% 50% at 50% 50%, rgba(181, 70, 195, 0.5) 50%, white)';
         jogo.push(sorteado);
     }
     jogo.sort((a, b) => Number(a) - Number(b));      // Ordenar Jogo
-    console.log(jogo);
     historico_loto("verifica");
     return;
 }
+
 
 // Função para Comparar 2 Jogos (Em Arrays)
 function compara_jogos(usuario, loterica){
@@ -104,6 +112,7 @@ function compara_jogos(usuario, loterica){
     return contador;
 }
 
+
 function limpar_selecao(){
     let botoes = document.querySelectorAll(".numeros"); // Seleciona Todos os Elementos da Classe Numeros
     botoes.forEach(botao => {
@@ -111,6 +120,7 @@ function limpar_selecao(){
     })
     jogo.splice(0, jogo.length);
 }
+
 
 async function numeros_mais_e_menos_saem() {
     let historico = await request("verifica");
@@ -138,6 +148,16 @@ async function numeros_mais_e_menos_saem() {
         //console.log(dezena_mais_sorteada);
     }
 }
+
+function pop_up(){
+    popup.showModal();
+}
+
+function fechar(){
+    popup.close();
+}
+
+let popup = document.querySelector("dialog");
 
 numeros_mais_e_menos_saem();
 let jogo = [];
