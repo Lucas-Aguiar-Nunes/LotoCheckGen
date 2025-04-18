@@ -28,7 +28,7 @@ async function request(id) {
 
 // Função para Verificar se Acertou último Concurso
 async function check_loto(id) {
-    if (jogo.length != 15){
+    if (jogo.length < 15){
         console.log("Numeros Insuficentes!");
         return;
     }
@@ -46,8 +46,12 @@ async function check_loto(id) {
 
 // Função para Verificar se Jogo já Saiu em Algum Concurso
 async function historico_loto(id) {
-    if (jogo.length != 15){
+    if (jogo.length < 15){
         console.log("Numeros Insuficentes!");
+        return;
+    }
+    else if (jogo.length > 15){
+        console.log("Jogo com mais de 15 Numeros!");
         return;
     }
     let historico = await request(id);
@@ -66,7 +70,11 @@ async function historico_loto(id) {
 // Função para Gerar Jogo Aleatório que ainda não saiu
 async function gen_loto(){
     let lotofacil = ['01','02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25'];
-    //let jogo = ['01', '05'];   // Fixos Informados pelo Usuário
+    if (jogo.length > 15){
+        console.log("Jogo com mais de 15 Numeros!");
+        return;
+    }
+
     for (let indice = 0; indice < jogo.length; indice++){
         let remover = lotofacil.indexOf(jogo[indice]);      // Encontra Posição de Numero Já Informado
         lotofacil.splice(remover, 1)                        // Remover Numeros Já Informados
@@ -137,13 +145,8 @@ botoes.forEach(botao => {
   botao.addEventListener("click", function () {
     let numero = this.textContent;  // Pega o texto dentro do botão
     if (!jogo.includes(numero)){    // Se Numero Não Está Selecionado
-        if (jogo.length < 15){      // Se já não foram os 15 numeros do jogo 
-            jogo.push(numero);
-            document.getElementById(numero).style.background = 'radial-gradient(50% 50% at 50% 50%, rgba(181, 70, 195, 0.5) 50%, white)';
-        }
-        else{
-            alert("15 Numeros já adicionados!");
-        }
+        jogo.push(numero);
+        document.getElementById(numero).style.background = 'radial-gradient(50% 50% at 50% 50%, rgba(181, 70, 195, 0.5) 50%, white)';
     }
     else{
         let remover = jogo.indexOf(numero);             // Encontra Posição de Numero Selecionado
