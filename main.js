@@ -84,9 +84,11 @@ async function gen_loto(){
         // Gera entre 0 e 1, multiplica pelo tamanho do array lotofacil e desconsidera parte decimal
         let sorteado = lotofacil.splice(indice, 1)[0]; // splice - Remover do Array (para não repetir)
         // E adiciona em sorteado (como array - indice 0)
+        document.getElementById(sorteado).style.background = 'radial-gradient(50% 50% at 50% 50%, rgba(181, 70, 195, 0.5) 50%, white)';
         jogo.push(sorteado);
     }
     jogo.sort((a, b) => Number(a) - Number(b));      // Ordenar Jogo
+    console.log(jogo);
     historico_loto("verifica");
     return;
 }
@@ -123,23 +125,23 @@ async function numeros_mais_e_menos_saem() {
     }
     let dezenas_ordem = numeros.slice();
     dezenas_ordem.sort(function(a, b){return a - b});
-    console.log(numeros);
-    console.log(dezenas_ordem);
+    //console.log(numeros);
+    //console.log(dezenas_ordem);
     for (let indice = 0; indice < 5; indice++){
         let dezena_menos_sorteada = numeros.indexOf(dezenas_ordem[indice]);
         dezena_menos_sorteada ++;
-        console.log(dezena_menos_sorteada);
+        //console.log(dezena_menos_sorteada);
     }
     for (let indice = 24; indice > 19; indice--){
         let dezena_mais_sorteada = numeros.indexOf(dezenas_ordem[indice]);
         dezena_mais_sorteada ++;
-        console.log(dezena_mais_sorteada);
+        //console.log(dezena_mais_sorteada);
     }
 }
 
+numeros_mais_e_menos_saem();
 let jogo = [];
 let botoes = document.querySelectorAll(".numeros"); // Seleciona Todos os Elementos da Classe Numeros
-numeros_mais_e_menos_saem();
 // Loop para cada Botão executar função passada
 botoes.forEach(botao => {
   botao.addEventListener("click", function () {
