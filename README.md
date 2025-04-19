@@ -1,4 +1,4 @@
-<h1 align="center"><img src="Imagens/Logo.pngLogo.png" alt="Logo" width="200px"></h1>
+<h1 align="center"><img src="Imagens/Logo.png" alt="Logo" width="200px"></h1>
 
 <p>
     <img src="https://img.shields.io/badge/Status-Em_Desenvolvimento-orange" alt="Status = Em Desenvolvimento">
