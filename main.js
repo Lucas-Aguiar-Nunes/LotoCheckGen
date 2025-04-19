@@ -64,7 +64,7 @@ async function historico_loto(id) {
     for (let index = 0; index < historico.length; index++){                 // Verificar cada Jogo de Todos os Concursos já Realizados
         let verificacao = compara_jogos(jogo, historico[index].dezenas);
         if (verificacao == 15){
-            pop_up("Já Saiu<br>Concurso: "+historico[index].concurso);
+            pop_up("Já Saiu\nConcurso: "+historico[index].concurso);
             return;
         }
     }
@@ -149,7 +149,6 @@ async function numeros_mais_e_menos_saem() {
 function pop_up(mensagem){
     let popup = document.getElementById("popup");
     document.getElementById("mensagem").innerText = mensagem;
-    //let msg = document.getElementById("mensagem");
     popup.showModal();
 }
 
