@@ -29,34 +29,34 @@ async function request(id) {
 // Função para Verificar se Acertou último Concurso
 async function check_loto(id) {
     if (jogo.length < 15){
-        document.getElementById("popup").innerText = "Numeros Insuficentes!";
-        pop_up();
+        pop_up("Numeros Insuficentes!");
         return;
     }
     
     let concurso = await request(id);
     let verificacao = compara_jogos(jogo, concurso.dezenas);
+    let mensagem = "";
 
     if (verificacao == 15){
-        document.getElementById("popup").innerText = "Ganhou!";
+        mensagem = "Ganhou!";
+        //pop_up("Ganhou!");
     }
     else{
-        document.getElementById("popup").innerText = "Perdeu\n Acertou "+verificacao+" Numeros!";
+        //pop_up("Perdeu\nAcertou "+verificacao+" Numeros!");
+        mensagem = "Perdeu\nAcertou "+verificacao+" Numeros!";
     }
-    pop_up();
+    pop_up(mensagem);
 }
 
 
 // Função para Verificar se Jogo já Saiu em Algum Concurso
 async function historico_loto(id) {
     if (jogo.length < 15){
-        document.getElementById("popup").innerText = "Numeros Insuficentes!";
-        pop_up();
+        pop_up("Numeros Insuficentes!");
         return;
     }
     else if (jogo.length > 15){
-        document.getElementById("popup").innerText = "Jogo com mais de 15 Numeros!";
-        pop_up();
+        pop_up("Jogo com mais de 15 Numeros!");
         return;
     }
     let historico = await request(id);
@@ -64,13 +64,11 @@ async function historico_loto(id) {
     for (let index = 0; index < historico.length; index++){                 // Verificar cada Jogo de Todos os Concursos já Realizados
         let verificacao = compara_jogos(jogo, historico[index].dezenas);
         if (verificacao == 15){
-            document.getElementById("popup").innerText = "Já Saiu\n Concurso: "+historico[index].concurso;
-            pop_up();
+            pop_up("Já Saiu<br>Concurso: "+historico[index].concurso);
             return;
         }
     }
-    document.getElementById("popup").innerText = "Nunca Saiu";
-    pop_up();
+    pop_up("Nunca Saiu");
 }
 
 
@@ -78,8 +76,7 @@ async function historico_loto(id) {
 async function gen_loto(){
     let lotofacil = ['01','02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25'];
     if (jogo.length > 15){
-        document.getElementById("popup").innerText = "Jogo com mais de 15 Numeros!";
-        pop_up();
+        pop_up("Jogo com mais de 15 Numeros!");
         return;
     }
 
@@ -149,15 +146,18 @@ async function numeros_mais_e_menos_saem() {
     }
 }
 
-function pop_up(){
+function pop_up(mensagem){
+    let popup = document.getElementById("popup");
+    document.getElementById("mensagem").innerText = mensagem;
+    //let msg = document.getElementById("mensagem");
     popup.showModal();
 }
 
-function fechar(){
-    popup.close();
+
+function fechar_popup(){
+    document.getElementById("popup").close();
 }
 
-let popup = document.querySelector("dialog");
 
 numeros_mais_e_menos_saem();
 let jogo = [];

@@ -16,10 +16,11 @@
     <input id="limpar" class="button" type="button" value="Limpar Tudo" onclick="limpar_selecao()">
     <input id="input" class="input" type="text">
 
-    <dialog>
-        <p id="popup">Teste</p>
-        <button id="close" type="button" onclick="fechar()">Fechar</button>
+    <dialog class="popup" id="popup">
+        <p id="mensagem">Texto</p>
+        <button id="close" class="button" type="button" onclick="fechar_popup()">OK</button>
     </dialog>
+
     <div class="bilhete">
         <button id="01" class="numeros" type="button">01</button>
         <button id="02" class="numeros" type="button">02</button>

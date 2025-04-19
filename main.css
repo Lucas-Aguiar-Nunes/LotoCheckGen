@@ -72,3 +72,19 @@ footer p {
 .button:hover{
     background-color: #bb8cc1;
 }
+
+.popup{
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    margin:auto;
+    font-size: 30px;
+    text-align: center;
+    width: 400px;         
+    height: 250px;         
+    font-size: 30px;
+}
+
+#close{
+    background-color: #B546C3ed;
+}
